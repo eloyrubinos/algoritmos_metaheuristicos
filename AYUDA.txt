@@ -1,0 +1,59 @@
+Ejecutar con:
+java -jar "BusquedaMetaheuristica.jar" <distancias> <algoritmo> <modo> <ejecuciones/aleatorios> <salida>
+
+IMPORTANTE: El algoritmo de computación evolutiva mejorado solo se contempla para el modo aleatorio, en el modo determinista se usa el algoritmo obligatorio. Además, no se genera traza porque sobrecargaba la memoria de NetBeans.
+
+IMPORTANTE: NO redirigir la salida estándar, ya que esta no es la traza de ejecución. La traza se guarda automáticamente en el archivo de salida que se indique.
+Más información a continuación.
+
+
+
+***********************
+EJECUCIÓN Y ARGUMENTOS
+***********************
+Este programa acepta cuatro argumentos obligatorios y uno opcional por línea de comandos:
+	1º- Ruta del archivo que especifica la población. Ej: 01_distancias_10.txt
+	2º- Algoritmo a utilizar:
+		-l     Búsqueda local del primer mejor.
+		-t     Búsqueda tabú del mejor.
+		-ts    Temple simulado.
+		-ce    Computación evolutiva.
+	3º- Modo de ejecución:
+		-a     Modo aleatorio.
+		-d     Modo determinista (toma los índices de un archivo).
+	4º- Depende del modo:
+		-a     Número X de veces que se quiere ejecutar el algoritmo. 0 < X. Ej: 10
+		-d     Ruta del archivo que contiene los índices. Ej: aleatorios.txt
+	5º- (opcional) Ruta del archivo de salida con la solución, por defecto "solucion.txt".
+
+El cuarto argumento para el modo aleatorio constituye una cantidad de ejecuciones completas del algoritmo, por ejemplo para hacer las 10 ejecuciones de muestra que se piden para el Excel del Campus Virtual de una sola vez.
+
+
+
+*********
+SOLUCIÓN
+*********
+NO redirigir la salida estándar a un archivo (con ">" por ejemplo) para obtener la solución.
+El propio programa escribe la traza de ejecución en un archivo. Se puede proporcionar una ruta como quinto argumento. Si no, se escribe en ./solucion.txt.
+La salida estándar nos da cuenta del progreso del algoritmo (en algunos casos), nada más.
+
+En caso de ejecución múltiple (con el 4º argumento en modo aleatorio) se agrega al principio del nombre del archivo (tanto al estándar como al proporcionado como quinto argumento) el número de ejecución correspondiente (se genera un archivo por ejecución), empezando por arriba (para 10 ejecuciones, el primer archivo será 10_solucion.txt y el último 1_solucion.txt).
+
+AVISO: Para que la traza proporcionada y la generada por el programa coincidan al hacer un diff, ambos archivos deben generarse en el mismo SO. Es decir, el programa debe ejecutarse en el SO en que se haya escrito la traza proporcionada.
+(Esto se debe al tratamiento de los retornos de carro).
+
+NOTA ADICIONAL: La salida se codifica en UTF-8.
+
+
+
+*********
+EJEMPLOS
+*********
+Un ejemplo de ejecución correcta del programa en modo aleatorio (con búsqueda local) sería:
+java -jar "BusquedaMetaheuristica.jar" 01_distancias.txt -l -a 10
+
+Un ejemplo de ejecución correcta del programa en modo determinista (con búsqueda local) sería:
+java -jar "BusquedaMetaheuristica.jar" 01_distancias.txt -l -d 01_aleatorios.txt
+
+Un ejemplo de ejecución correcta del programa en modo determinista (con búsqueda tabú) y especificando salida sería:
+java -jar "BusquedaMetaheuristica.jar" 02_distancias.txt -t -d 02_aleatorios.txt traza2.txt.
